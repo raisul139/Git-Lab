@@ -3,6 +3,35 @@ import java.text.*;
 import java.util.*;
 
 public class StudentList {
+
+    public static void readFile(){
+        try{
+            BufferedReader fileIn = new BufferedReader(new InputStreamReader(new FileInputStream(Constants.fileName)));
+            line = fileIn.readLine();
+            names = line.split(", ");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeFile(){
+        try{
+            BufferedWriter fileOut = new BufferedWriter(new FileWriter(Constants.fileName, false));
+            fileOut.write(line+", "+newStudentName+'\n');
+
+            Date date = new Date();
+            String dateFormat = Constants.dateFormat;
+            DateFormat dateFormatTemp = new SimpleDateFormat(dateFormat);
+            String dateline= dateFormatTemp.format(date);
+
+            fileOut.write(Constants.outputMassegeOne+" "+dateline);
+            fileOut.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
 
 //		Check arguments
