@@ -12,13 +12,13 @@ public class StudentList {
             if (args[0].equals("a")) {
                 System.out.println("Loading data ...");
                 try {
-                    BufferedReader s = new BufferedReader(
+                    BufferedReader fRead = new BufferedReader(
                             new InputStreamReader(
                                     new FileInputStream("students.txt")));
-                    String r = s.readLine();
-                    String i[] = r.split(",");
-                    for (String j : i) {
-                        System.out.println(j.trim());
+                    String fLine = fRead.readLine();
+                    String names[] = fLine.split(",");
+                    for (String name : names) {
+                        System.out.println(name.trim());
                     }
                 } catch (Exception e) {
                 }
@@ -26,12 +26,12 @@ public class StudentList {
             } else if (args[0].equals("r")) {
                 System.out.println("Loading data ...");
                 try {
-                    BufferedReader s = new BufferedReader(
+                    BufferedReader fRead = new BufferedReader(
                             new InputStreamReader(
                                     new FileInputStream("students.txt")));
-                    String r = s.readLine();
-                    System.out.println(r);
-                    String i[] = r.split(",");
+                    String fLine = fRead.readLine();
+                    System.out.println(fLine);
+                    String i[] = fLine.split(",");
                     Random x = new Random();
                     int y = x.nextInt();
                     System.out.println(i[y]);
