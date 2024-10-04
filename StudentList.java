@@ -1,8 +1,10 @@
 import java.io.*;
 import java.text.*;
 import java.util.*;
-
 public class StudentList {
+    static String line;
+    static String[] names;
+    static String newStudentName;
 
     public static void readFile(){
         try{
@@ -32,100 +34,67 @@ public class StudentList {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
 
 //		Check arguments
-        if (args.length != 1) {
-            System.out.println("Invalid Argument");
-        } else {
-            if (args[0].equals("a")) {
-                System.out.println("Loading data ...");
-                try {
-                    BufferedReader fRead = new BufferedReader(
-                            new InputStreamReader(
-                                    new FileInputStream(Constants.fileName)));
-                    String fLine = fRead.readLine();
-                    String names[] = fLine.split(",");
-                    for (String name : names) {
-                        System.out.println(name.trim());
+        if(args.length!=1){
+            //terminate
+            System.out.println(Constants.invalidOutputMassege);
+            return;
+        }
+        else{
+            readFile();
+
+            if(args[0].equals("a")) {
+                System.out.println(Constants.getOutputMassegeTwo);
+
+                for(String name : names) { System.out.println(name); }
+
+                System.out.println(Constants.outputMassegeThree);
+            }
+            else if(args[0].equals("r"))
+            {
+                System.out.println(Constants.getOutputMassegeTwo);
+
+                Random random = new Random();
+                int randomNum = random.nextInt(names.length);
+                System.out.println(names[randomNum]);
+
+                System.out.println(Constants.outputMassegeThree);
+            }
+            else if(args[0].contains("+")){
+                System.out.println(Constants.getOutputMassegeTwo);
+
+                newStudentName = args[0].substring(1);
+                writeFile();
+
+                System.out.println(Constants.outputMassegeThree);
+            }
+            else if(args[0].contains("?"))
+            {
+                System.out.println(Constants.getOutputMassegeTwo);
+
+                String studentName = args[0].substring(1);
+                for(String name: names){
+                    if(name.equals(studentName)){
+                        System.out.println("We found it!");
+                        break;
                     }
-                } catch (Exception e) {
-                }
-                System.out.println("Data Loaded.");
-            } else if (args[0].equals("r")) {
-                System.out.println("Loading data ...");
-                try {
-                    BufferedReader fRead = new BufferedReader(
-                            new InputStreamReader(
-                                    new FileInputStream(Constants.fileName)));
-                    String fLine = fRead.readLine();
-                    System.out.println(fLine);
-                    String i[] = fLine.split(",");
-                    Random x = new Random();
-                    int y = x.nextInt();
-                    System.out.println(i[y]);
-                } catch (Exception e) {
-                }
-                System.out.println("Data Loaded.");
-            } else if (args[0].contains("+")) {
-                System.out.println("Loading data ...");
-                try {
-                    BufferedWriter s = new BufferedWriter(
-                            new FileWriter(Constants.fileName, true));
-                    String t = args[0].substring(1);
-                    Date d = new Date();
-                    String df = "dd/mm/yyyy-hh:mm:ss a";
-                    DateFormat dateFormat = new SimpleDateFormat(df);
-                    String fd = dateFormat.format(d);
-                    s.write(", " + t + "\nList last updated on " + fd);
-                    s.close();
-                } catch (Exception e) {
                 }
 
-                System.out.println("Data Loaded.");
-            } else if (args[0].contains("?")) {
-                System.out.println("Loading data ...");
-                try {
-                    BufferedReader s = new BufferedReader(
-                            new InputStreamReader(
-                                    new FileInputStream(Constants.fileName)));
-                    String r = s.readLine();
-                    String i[] = r.split(",");
-                    boolean done = false;
-                    String t = args[0].substring(1);
-                    for (int idx = 0; idx < i.length && !done; idx++) {
-                        if (i[idx].equals(t)) {
-                            System.out.println("We found it!");
-                            done = true;
-                        }
-                    }
-                } catch (Exception e) {
-                }
-                System.out.println("Data Loaded.");
-            } else if (args[0].contains("c")) {
-                System.out.println("Loading data ...");
-                try {
-                    BufferedReader s = new BufferedReader(
-                            new InputStreamReader(
-                                    new FileInputStream(Constants.fileName)));
-                    String D = s.readLine();
-                    char a[] = D.toCharArray();
-                    boolean in_word = false;
-                    int count = 0;
-                    for (char c : a) {
-                        if (c == ' ') {
-                            if (!in_word) {
-                                count++;
-                                in_word = true;
-                            } else {
-                                in_word = false;
-                            }
-                        }
-                    }
-                    System.out.println(count + " word(s) found " + a.length);
-                } catch (Exception e) {
-                }
-                System.out.println("Data Loaded.");
+                System.out.println(Constants.outputMassegeThree);
+            }
+            else if(args[0].contains("c"))
+            {
+                System.out.println(Constants.getOutputMassegeTwo);
+
+                System.out.println(names.length+" word(s) found");
+
+                System.out.println(Constants.outputMassegeThree);
+            }
+            else{
+                System.out.println("Constant invalid!");
             }
         }
     }
