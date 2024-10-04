@@ -43,7 +43,7 @@ public class StudentList {
                 try {
                     BufferedReader fRead = new BufferedReader(
                             new InputStreamReader(
-                                    new FileInputStream("students.txt")));
+                                    new FileInputStream(Constants.fileName)));
                     String fLine = fRead.readLine();
                     String names[] = fLine.split(",");
                     for (String name : names) {
@@ -57,7 +57,7 @@ public class StudentList {
                 try {
                     BufferedReader fRead = new BufferedReader(
                             new InputStreamReader(
-                                    new FileInputStream("students.txt")));
+                                    new FileInputStream(Constants.fileName)));
                     String fLine = fRead.readLine();
                     System.out.println(fLine);
                     String i[] = fLine.split(",");
@@ -71,7 +71,7 @@ public class StudentList {
                 System.out.println("Loading data ...");
                 try {
                     BufferedWriter s = new BufferedWriter(
-                            new FileWriter("students.txt", true));
+                            new FileWriter(Constants.fileName, true));
                     String t = args[0].substring(1);
                     Date d = new Date();
                     String df = "dd/mm/yyyy-hh:mm:ss a";
@@ -88,7 +88,7 @@ public class StudentList {
                 try {
                     BufferedReader s = new BufferedReader(
                             new InputStreamReader(
-                                    new FileInputStream("students.txt")));
+                                    new FileInputStream(Constants.fileName)));
                     String r = s.readLine();
                     String i[] = r.split(",");
                     boolean done = false;
@@ -107,7 +107,7 @@ public class StudentList {
                 try {
                     BufferedReader s = new BufferedReader(
                             new InputStreamReader(
-                                    new FileInputStream("students.txt")));
+                                    new FileInputStream(Constants.fileName)));
                     String D = s.readLine();
                     char a[] = D.toCharArray();
                     boolean in_word = false;
