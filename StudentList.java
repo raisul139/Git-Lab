@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -78,7 +79,7 @@ public class StudentList {
                 String studentName = args[0].substring(1);
                 for(String name: names){
                     if(name.equals(studentName)){
-                        System.out.println("We found it!\n");
+                        System.out.println("We found it!");
                         break;
                     }
                 }
@@ -89,7 +90,7 @@ public class StudentList {
             {
                 System.out.println("Loading data ...");
 
-                System.out.println(names.length+" word(s) found\n");
+                System.out.println(names.length+" word(s) found");
 
                 System.out.println("Data Loaded.");
             }
